@@ -1,0 +1,25 @@
+{
+  "name": "mcp_gaode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "node src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "engines": {
+    "node": ">=22.15.0"
+  },
+  "devDependencies": {
+    "create-mcp": "^0.4.17"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "json-rpc-2.0": "^1.7.1"
+  }
+}
