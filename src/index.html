@@ -60,21 +60,25 @@
         }
     </style>
 </head>
-<body class="bg-light text-dark min-h-screen flex flex-col">
-    <!-- 页面头部 -->
-    <header class="bg-primary text-white py-6 shadow-md">
-        <div class="container mx-auto px-4">
-            <h1 class="text-[28px] md:text-[36px] font-bold text-center text-shadow fade-in">
-                长辈出行助手
-            </h1>
-            <p class="text-[18px] text-center mt-2 text-white/90 fade-in" style="animation-delay: 0.2s">
-                轻松规划您的出行路线
-            </p>
-        </div>
-    </header>
+<body class="bg-light text-dark">
+    <!-- 单一滚动容器，包含两个页面内容 -->
+    <div id="singleScrollContainer" class="relative min-h-screen overflow-y-auto">
+        <!-- 主页面内容 -->
+        <div id="mainPage" class="relative z-10 bg-light transition-opacity duration-500">
+            <!-- 页面头部 -->
+            <header class="bg-primary text-white py-6 shadow-md">
+                <div class="container mx-auto px-4">
+                    <h1 class="text-[28px] md:text-[36px] font-bold text-center text-shadow fade-in">
+                        长辈出行助手
+                    </h1>
+                    <p class="text-[18px] text-center mt-2 text-white/90 fade-in" style="animation-delay: 0.2s">
+                        轻松规划您的出行路线
+                    </p>
+                </div>
+            </header>
 
-    <!-- 主要内容 -->
-    <main class="flex-grow container mx-auto px-4 py-8">
+            <!-- 主要内容 -->
+            <main class="flex-grow container mx-auto px-4 py-8">
         <!-- 路线信息卡片 -->
         <div class="bg-white rounded-xl shadow-lg p-6 mb-8 slide-up" style="animation-delay: 0.3s">
             <div class="flex items-start space-x-4">
@@ -220,7 +224,7 @@
                     <p class="text-[20px]" id="notice">今日无临时管制，可正常前往</p>
                 </div>
             </div>
-        </motion.div>
+        </div>
     </main>
 
     <!-- 页脚 -->
@@ -230,6 +234,122 @@
             <p class="text-[16px] text-white/70 mt-2">祝您出行顺利，一路平安！</p>
         </div>
     </footer>
+    
+    <!-- 底部触发区域 - 用于视觉提示 -->
+    <div id="scrollTrigger" class="h-32 bg-gradient-to-t from-light to-transparent flex items-center justify-center">
+        <p class="text-primary text-xl font-medium flex items-center animate-bounce">
+            <span class="material-icons mr-2">arrow_downward</span>
+            继续滚动查看更多
+        </p>
+    </div>
+    </div>
+
+    <!-- 第二页面内容 - 直接嵌入在滚动容器中 -->
+    <div id="secondPage" class="relative z-0 bg-[#121212] min-h-screen">
+        <!-- 顶部导航栏 -->
+        <div class="h-[2px] w-full bg-[#2D2D2D]"></div>
+        
+        <!-- 页面内容 -->
+        <div class="min-h-screen flex flex-col">
+            <!-- 主要内容区域 -->
+            <div class="flex-grow flex flex-col items-center justify-center p-8">
+            <!-- 长辈出行助手Logo和标语 -->
+            <div class="text-center max-w-4xl mb-16">
+                <h2 class="text-[36px] md:text-[48px] font-bold mb-6 text-white">长辈出行助手</h2>
+                <p id="subtitleTriggerStart" class="text-[20px] text-[#AAAAAA]">为您的每一次出行保驾护航</p>
+            </div>
+            
+            <!-- 功能特点卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+                <div class="bg-[#1E1E1E] p-6 rounded-xl hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
+                    <span class="material-icons text-[48px] mb-4 block text-white/80">map</span>
+                    <h3 class="text-[24px] font-bold mb-2 text-white">智能导航</h3>
+                    <p class="text-[#AAAAAA]">多种出行方式选择，智能规划最优路线</p>
+                </div>
+                <div class="bg-[#1E1E1E] p-6 rounded-xl hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
+                    <span class="material-icons text-[48px] mb-4 block text-white/80">traffic</span>
+                    <h3 class="text-[24px] font-bold mb-2 text-white">实时交通</h3>
+                    <p class="text-[#AAAAAA]">实时路况信息，避开拥堵路段</p>
+                </div>
+                <div class="bg-[#1E1E1E] p-6 rounded-xl hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
+                    <span class="material-icons text-[48px] mb-4 block text-white/80">info</span>
+                    <h3 class="text-[24px] font-bold mb-2 text-white">出行信息</h3>
+                    <p class="text-[#AAAAAA]">目的地开放时间、停车场等实用信息</p>
+                </div>
+            </div>
+            
+            <!-- 额外内容 - 提供更多服务信息 -->
+            <div class="max-w-3xl mx-auto mt-16 text-center">
+                <h3 id="subtitleTriggerEnd" class="text-[24px] font-bold mb-6 text-white">我们的服务</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div class="flex items-start space-x-4 p-4 hover:bg-[#1E1E1E] rounded-lg transition-all">
+                        <span class="material-icons text-white/80 mt-1">calendar_today</span>
+                        <div>
+                            <h4 class="text-[18px] font-semibold text-white mb-1">行程规划</h4>
+                            <p class="text-[#AAAAAA]">根据您的需求定制最佳出行方案</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-4 hover:bg-[#1E1E1E] rounded-lg transition-all">
+                        <span class="material-icons text-white/80 mt-1">access_time</span>
+                        <div>
+                            <h4 class="text-[18px] font-semibold text-white mb-1">实时提醒</h4>
+                            <p class="text-[#AAAAAA]">及时获取交通变化和时间提醒</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-4 hover:bg-[#1E1E1E] rounded-lg transition-all">
+                        <span class="material-icons text-white/80 mt-1">local_activity</span>
+                        <div>
+                            <h4 class="text-[18px] font-semibold text-white mb-1">景点推荐</h4>
+                            <p class="text-[#AAAAAA]">发现周边值得游览的好去处</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-4 hover:bg-[#1E1E1E] rounded-lg transition-all">
+                        <span class="material-icons text-white/80 mt-1">help_outline</span>
+                        <div>
+                            <h4 class="text-[18px] font-semibold text-white mb-1">24小时客服</h4>
+                            <p class="text-[#AAAAAA]">随时为您解答出行中的问题</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 用户评价 -->
+            <div class="max-w-3xl mx-auto mt-16">
+                <h3 class="text-[24px] font-bold mb-6 text-white text-center">用户评价</h3>
+                <div class="bg-[#1E1E1E] p-6 rounded-xl border border-[#2D2D2D]">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-yellow-400">★</span>
+                        <span class="text-yellow-400">★</span>
+                        <span class="text-yellow-400">★</span>
+                        <span class="text-yellow-400">★</span>
+                        <span class="text-yellow-400">★</span>
+                    </div>
+                    <p class="text-[#AAAAAA] italic mb-4">"非常好用的出行助手，为我父母的出行提供了很大帮助，界面简洁，操作方便，强烈推荐！"</p>
+                    <p class="text-white font-medium">— 张先生</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 返回主页面按钮 -->
+        <div class="flex justify-center pb-16">
+            <button id="backToMainBtn" class="bg-[#2D2D2D] text-white px-8 py-3 rounded-full text-[18px] font-bold hover:bg-[#3D3D3D] transition-all border border-[#3D3D3D]">
+                返回主页面
+            </button>
+        </div>
+    </div>
+        
+        <!-- 返回主页面按钮 -->
+        <div class="flex justify-center pb-16">
+            <button id="backToMainBtn" class="bg-[#2D2D2D] text-white px-8 py-3 rounded-full text-[18px] font-bold hover:bg-[#3D3D3D] transition-all border border-[#3D3D3D]">
+                返回主页面顶部
+            </button>
+        </div>
+        
+        <!-- 底部固定返回顶部按钮 -->
+        <button id="scrollToTopBtn" class="fixed bottom-8 right-8 bg-[#2D2D2D] text-white w-12 h-12 rounded-full flex items-center justify-center opacity-70 hover:opacity-100 transition-all border border-[#3D3D3D]">
+            <span class="material-icons">arrow_upward</span>
+        </button>
+    </div>
 
     <!-- JavaScript -->
     <script>
@@ -350,6 +470,421 @@
                     });
                 });
             });
+            
+            // 获取页面元素
+            const singleScrollContainer = document.getElementById('singleScrollContainer');
+            const mainPage = document.getElementById('mainPage');
+            const secondPage = document.getElementById('secondPage');
+            const backToMainBtn = document.getElementById('backToMainBtn');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            
+            // 获取主页面和第二页面的位置信息
+            let mainPageHeight = 0;
+            let secondPageTop = 0;
+            
+            // 计算页面位置
+            function calculatePagePositions() {
+                mainPageHeight = mainPage.offsetHeight;
+                secondPageTop = mainPageHeight;
+            }
+            
+            // 初始化计算
+            calculatePagePositions();
+            
+            // 窗口大小改变时重新计算
+            window.addEventListener('resize', calculatePagePositions);
+            
+            // 滚动事件处理
+            let lastScrollPosition = 0;
+            let isScrollingUp = false;
+            
+            // 添加平滑滚动效果
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // 返回主页面顶部按钮点击事件
+            backToMainBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 返回顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                // 计算第二页面的顶部位置
+                const secondPagePosition = mainPage.offsetHeight;
+                
+                // 滚动到第二页面顶部
+                window.scrollTo({
+                    top: secondPagePosition,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 获取功能卡片元素 - 改进版本
+            let navCard, trafficCard, infoCard;
+            
+            // 先尝试通过标题内容查找卡片
+            function findCardsByContent() {
+                // 使用属性选择器查找包含特定文本的h3元素的父元素
+                const titles = secondPage.querySelectorAll('h3');
+                
+                titles.forEach(title => {
+                    const text = title.textContent.trim();
+                    if (text.includes('智能导航')) {
+                        // 获取父元素卡片
+                        navCard = title.closest('div');
+                    } else if (text.includes('实时交通')) {
+                        trafficCard = title.closest('div');
+                    } else if (text.includes('出行信息')) {
+                        infoCard = title.closest('div');
+                    }
+                });
+            }
+            
+            // 查找卡片
+            findCardsByContent();
+            
+            // 如果找不到，尝试通过图标查找
+            if (!navCard || !trafficCard || !infoCard) {
+                const icons = secondPage.querySelectorAll('.material-icons');
+                
+                icons.forEach(icon => {
+                    const iconName = icon.textContent.trim();
+                    if (iconName === 'map' && !navCard) {
+                        // 获取父元素卡片
+                        navCard = icon.closest('div');
+                    } else if (iconName === 'traffic' && !trafficCard) {
+                        trafficCard = icon.closest('div');
+                    } else if (iconName === 'info' && !infoCard) {
+                        infoCard = icon.closest('div');
+                    }
+                });
+            }
+            
+            // 如果还是找不到，尝试通过网格容器查找
+            if (!navCard || !trafficCard || !infoCard) {
+                // 查找包含卡片的网格容器
+                const gridContainers = secondPage.querySelectorAll('.grid');
+                
+                gridContainers.forEach(container => {
+                    const cards = container.querySelectorAll('div');
+                    if (cards.length >= 3) {
+                        // 假设前三个是功能卡片
+                        if (!navCard) navCard = cards[0];
+                        if (!trafficCard) trafficCard = cards[1];
+                        if (!infoCard) infoCard = cards[2];
+                    }
+                });
+            }
+            
+            // 添加唯一标识，便于调试
+            if (navCard) navCard.id = 'navigationCard';
+            if (trafficCard) trafficCard.id = 'trafficCard';
+            if (infoCard) infoCard.id = 'infoCard';
+            
+            // 为卡片添加基础样式，确保可以水平移动
+            function setupCardStyles(card) {
+                if (card) {
+                    card.style.transition = 'transform 0.3s ease-out';
+                    card.style.position = 'relative';
+                    // 初始位置从右侧进入
+                    card.style.transform = 'translateX(200px)';
+                }
+            }
+            
+            // 为所有卡片设置样式
+            setupCardStyles(navCard);
+            setupCardStyles(trafficCard);
+            setupCardStyles(infoCard);
+            
+            // 定义卡片移动参数
+            const maxCardMove = 300; // 卡片最大水平移动距离
+            let cardScrollProgress = 0; // 卡片滚动进度 (0-1)
+            let isInCardScrollZone = false; // 是否在卡片滚动区域内
+            let isCardsHorizontalCentered = false; // 卡片是否在水平方向居中
+            let cardZoneStart = 0; // 卡片区域开始位置（第一个卡片位置）
+            let cardZoneEnd = 0; // 卡片区域结束位置（第三个卡片位置）
+            let hasPassedCardZone = false; // 是否已通过卡片区域
+            
+            // 计算卡片区域位置（第一个卡片开始到第三个卡片结束）
+            function calculateCardZone() {
+                if (navCard && infoCard) {
+                    // 获取第一个卡片（智能导航）的位置
+                    const navCardRect = navCard.getBoundingClientRect();
+                    // 获取第三个卡片（出行信息）的位置
+                    const infoCardRect = infoCard.getBoundingClientRect();
+                    
+                    // 计算卡片区域的全局位置
+                    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                    // 精确计算第一个卡片位置作为触发起点
+                    cardZoneStart = currentScroll + navCardRect.top;
+                    // 精确计算第三个卡片底部位置作为触发终点
+                    cardZoneEnd = currentScroll + infoCardRect.bottom;
+                }
+            }
+            
+            // 检测卡片是否在页面水平居中 - 改进版本
+            function checkCardsHorizontalCentered() {
+                if (navCard && trafficCard && infoCard) {
+                    // 获取页面视口高度和中心
+                    const viewportHeight = window.innerHeight;
+                    const viewportCenter = viewportHeight / 2;
+                    
+                    // 获取卡片容器的位置（三个卡片应该在同一个网格容器内）
+                    let cardsContainer = navCard.parentElement;
+                    
+                    if (cardsContainer) {
+                        // 使用容器的位置进行更精确的计算
+                        const containerRect = cardsContainer.getBoundingClientRect();
+                        const containerCenter = containerRect.top + (containerRect.height / 2);
+                        
+                        // 计算容器中心与视口中心的距离
+                        const distanceFromCenter = Math.abs(containerCenter - viewportCenter);
+                        
+                        // 设置一个合理的阈值（视口高度的20%），当容器中心接近视口中心时触发
+                        const threshold = viewportHeight * 0.2;
+                        isCardsHorizontalCentered = distanceFromCenter < threshold;
+                    } else {
+                        // 备用方案：使用三个卡片的平均位置
+                        const navCardRect = navCard.getBoundingClientRect();
+                        const trafficCardRect = trafficCard.getBoundingClientRect();
+                        const infoCardRect = infoCard.getBoundingClientRect();
+                        
+                        // 计算三个卡片的平均中心位置
+                        const navCenter = navCardRect.top + (navCardRect.height / 2);
+                        const trafficCenter = trafficCardRect.top + (trafficCardRect.height / 2);
+                        const infoCenter = infoCardRect.top + (infoCardRect.height / 2);
+                        const avgCenter = (navCenter + trafficCenter + infoCenter) / 3;
+                        
+                        // 计算与视口中心的距离
+                        const distanceFromCenter = Math.abs(avgCenter - viewportCenter);
+                        const threshold = viewportHeight * 0.2;
+                        isCardsHorizontalCentered = distanceFromCenter < threshold;
+                    }
+                    
+                    // 可选：添加调试信息显示
+                    showDebugInfo();
+                }
+                return isCardsHorizontalCentered;
+            }
+            
+            // 添加调试信息显示函数
+            function showDebugInfo() {
+                // 检查是否已有调试元素
+                let debugElement = document.getElementById('debugInfo');
+                if (!debugElement) {
+                    debugElement = document.createElement('div');
+                    debugElement.id = 'debugInfo';
+                    debugElement.style.position = 'fixed';
+                    debugElement.style.top = '10px';
+                    debugElement.style.right = '10px';
+                    debugElement.style.background = 'rgba(0,0,0,0.8)';
+                    debugElement.style.color = 'white';
+                    debugElement.style.padding = '10px';
+                    debugElement.style.borderRadius = '5px';
+                    debugElement.style.zIndex = '9999';
+                    debugElement.style.fontSize = '12px';
+                    debugElement.style.maxWidth = '300px';
+                    document.body.appendChild(debugElement);
+                }
+                
+                // 获取视口信息
+                const viewportHeight = window.innerHeight;
+                const viewportCenter = viewportHeight / 2;
+                const scrollPosition = window.pageYOffset;
+                
+                // 更新调试信息
+                debugElement.innerHTML = `
+                视口高度: ${viewportHeight}px<br>
+                视口中心: ${Math.round(viewportCenter)}px<br>
+                滚动位置: ${Math.round(scrollPosition)}px<br>
+                卡片居中: ${isCardsHorizontalCentered ? '是' : '否'}<br>
+                卡片区域: ${Math.round(cardZoneStart)}px - ${Math.round(cardZoneEnd)}px<br>
+                滚动进度: ${Math.round(cardScrollProgress * 100)}%
+                `;
+            }
+            
+            // 另一种实现方式：使用Intersection Observer API检测卡片居中
+            // 这是一个更现代化的方法，适合性能要求较高的场景
+            let centerObserver = null;
+            let useIntersectionObserver = false; // 可以通过控制台设置为true来启用
+            
+            function setupIntersectionObserver() {
+                // 检查浏览器是否支持Intersection Observer
+                if ('IntersectionObserver' in window && navCard && trafficCard && infoCard) {
+                    // 创建居中检测的容器
+                    let centerDetectionDiv = document.getElementById('centerDetection');
+                    if (!centerDetectionDiv) {
+                        centerDetectionDiv = document.createElement('div');
+                        centerDetectionDiv.id = 'centerDetection';
+                        centerDetectionDiv.style.position = 'fixed';
+                        centerDetectionDiv.style.top = '50%';
+                        centerDetectionDiv.style.left = '0';
+                        centerDetectionDiv.style.width = '100%';
+                        centerDetectionDiv.style.height = '1px';
+                        centerDetectionDiv.style.background = 'transparent';
+                        centerDetectionDiv.style.zIndex = '9998';
+                        document.body.appendChild(centerDetectionDiv);
+                    }
+                    
+                    // 配置Intersection Observer
+                    const observerOptions = {
+                        root: null, // 使用视口作为根
+                        rootMargin: '-20% 0px -20% 0px', // 设置上下边距，创建一个40%高的居中区域
+                        threshold: [0.1, 0.5, 0.9] // 当元素有10%、50%、90%可见时触发回调
+                    };
+                    
+                    // 创建观察者
+                    centerObserver = new IntersectionObserver((entries) => {
+                        // 如果启用了Intersection Observer模式
+                        if (useIntersectionObserver) {
+                            entries.forEach(entry => {
+                                // 检查卡片容器是否在居中区域可见
+                                if (entry.isIntersecting) {
+                                    // 计算元素在视口中的位置，判断是否接近中心
+                                    const boundingRect = entry.boundingClientRect;
+                                    const elementCenter = boundingRect.top + (boundingRect.height / 2);
+                                    const viewportCenter = window.innerHeight / 2;
+                                    const distance = Math.abs(elementCenter - viewportCenter);
+                                    
+                                    // 设置一个合理的阈值
+                                    const threshold = window.innerHeight * 0.15;
+                                    isCardsHorizontalCentered = distance < threshold;
+                                }
+                            });
+                        }
+                    }, observerOptions);
+                    
+                    // 获取卡片容器并观察
+                    const cardsContainer = navCard.parentElement;
+                    if (cardsContainer) {
+                        centerObserver.observe(cardsContainer);
+                    }
+                }
+            }
+            
+            // 初始化Intersection Observer（默认不启用）
+            setupIntersectionObserver();
+            
+            // 初始化计算卡片区域和居中状态
+            calculateCardZone();
+            checkCardsHorizontalCentered();
+            
+            // 窗口大小改变时重新计算卡片区域和居中状态
+            window.addEventListener('resize', function() {
+                calculateCardZone();
+                checkCardsHorizontalCentered();
+            });
+            
+            // 监听scroll事件，检测卡片是否居中
+            window.addEventListener('scroll', function() {
+                calculateCardZone();
+                checkCardsHorizontalCentered();
+            });
+            
+            // 监听wheel事件，实现卡片滚动区域内的特殊滚动效果
+            window.addEventListener('wheel', function(e) {
+                const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // 重新计算卡片区域位置和居中状态
+                calculateCardZone();
+                checkCardsHorizontalCentered();
+                
+                // 检测滚动方向（提前计算，确保所有条件分支都能访问）
+                const delta = e.deltaY > 0 ? 1 : -1;
+                
+                // 检查是否应该触发水平移动：
+                // 1. 卡片在水平居中 AND
+                // 2. 在卡片区域范围内（第一个卡片开始到第三个卡片结束）
+                const shouldTriggerHorizontalMove = 
+                    isCardsHorizontalCentered && 
+                    currentScrollPosition >= cardZoneStart - 100 && 
+                    currentScrollPosition <= cardZoneEnd + 100;
+                
+                // 如果应该触发水平移动，并且卡片滚动进度未达到100%
+                if (shouldTriggerHorizontalMove && cardScrollProgress < 1) {
+                    isInCardScrollZone = true;
+                    
+                    // 阻止默认的滚动行为（竖直滚动）
+                    e.preventDefault();
+                    
+                    // 根据滚动方向更新卡片滚动进度
+                    const scrollSpeed = 0.001; // 滚动速度因子
+                    const newProgress = cardScrollProgress + delta * Math.abs(e.deltaY) * scrollSpeed;
+                    
+                    // 限制进度在0-1范围内
+                    cardScrollProgress = Math.max(0, Math.min(1, newProgress));
+                    
+                    // 根据滚动进度计算卡片移动距离
+                    let navMove, trafficMove, infoMove;
+                    
+                    // 向下滚动时，卡片从右侧向左侧移动
+                    // 向上滚动时，卡片从左侧向右侧移动
+                    navMove = 200 - cardScrollProgress * maxCardMove;
+                    trafficMove = 180 - cardScrollProgress * maxCardMove * 0.9;
+                    infoMove = 160 - cardScrollProgress * maxCardMove * 0.8;
+                    
+                    // 应用transform样式
+                    if (navCard) navCard.style.transform = `translateX(${navMove}px)`;
+                    if (trafficCard) trafficCard.style.transform = `translateX(${trafficMove}px)`;
+                    if (infoCard) infoCard.style.transform = `translateX(${infoMove}px)`;
+                } else if (delta > 0 && cardScrollProgress >= 1) {
+                    // 当卡片完全移动到位后，如果继续向下滚动，允许页面移动
+                    hasPassedCardZone = true;
+                    isInCardScrollZone = false;
+                    // 手动设置滚动位置，继续向下滚动
+                    window.scrollTo({ top: currentScrollPosition + Math.abs(e.deltaY), behavior: 'auto' });
+                    return;
+                } else if (hasPassedCardZone && delta < 0 && currentScrollPosition < cardZoneEnd - 100) {
+                    // 如果向上滚动且已经通过卡片区域，但回到了卡片区域下方附近
+                    hasPassedCardZone = false;
+                    // 恢复卡片的初始位置
+                    cardScrollProgress = 0;
+                    if (navCard) navCard.style.transform = 'translateX(200px)';
+                    if (trafficCard) trafficCard.style.transform = 'translateX(180px)';
+                    if (infoCard) infoCard.style.transform = 'translateX(160px)';
+                } else {
+                    // 如果不满足触发条件，恢复正常滚动行为
+                    isInCardScrollZone = false;
+                }
+            }, { passive: false });
+            
+            // 监听scroll事件，用于处理页面切换和卡片区域外的滚动
+            window.addEventListener('scroll', function() {
+                const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // 检测滚动方向
+                isScrollingUp = currentScrollPosition < lastScrollPosition;
+                lastScrollPosition = currentScrollPosition;
+                
+                // 如果不在触发区域内且未通过卡片区域，处理其他滚动逻辑
+                if (!isInCardScrollZone && !hasPassedCardZone) {
+                    // 检查是否在第二页面区域内
+                    const secondPagePosition = mainPage.offsetHeight;
+                    const secondPageBottom = secondPagePosition + secondPage.offsetHeight;
+                    
+                    // 根据滚动位置更新卡片状态
+                    if (currentScrollPosition < secondPagePosition - 200) {
+                        // 滚动到第二页面上方较远位置，卡片回到右侧
+                        cardScrollProgress = 0;
+                        if (navCard) navCard.style.transform = 'translateX(200px)';
+                        if (trafficCard) trafficCard.style.transform = 'translateX(180px)';
+                        if (infoCard) infoCard.style.transform = 'translateX(160px)';
+                    }
+                }
+            });
+            
+            // 禁用任何自动滚动行为，确保页面位置保持稳定
+            // 移除任何可能导致页面自动滚动的代码
+            // 这样用户停止滚动后，页面位置就会保持稳定
         });
     </script>
 </body>

@@ -21,7 +21,8 @@ function getSystemInfo() {
     version: MCP_SERVICE_VERSION,
     nodeVersion: process.version,
     timestamp: new Date().toISOString(),
-    capabilities: {
+    capabilities: 
+    {
       tools: ['helloWorld', 'getSystemInfo', 'generateTaxiLink', 'generateBusLink']
     }
   };

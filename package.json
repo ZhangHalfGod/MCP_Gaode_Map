@@ -4,8 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js",
-    "dev": "node src/server.js"
+    
+    "start": "http-server src -p 8080",
+    "dev": "http-server src -p 8080 -c-1"
   },
   "keywords": [],
   "author": "",

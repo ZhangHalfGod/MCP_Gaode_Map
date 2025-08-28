@@ -2,12 +2,13 @@
   publish = "src"
   command = ""
 
-[headers]
+[[headers]]
   # 为所有文件添加缓存控制
   for = "/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
 
+[[headers]]
   # 为HTML文件设置不缓存
   for = "/*.html"
   [headers.values]
