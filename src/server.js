@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
+// 配置静态文件服务
+app.use(express.static(__dirname));
+
 // 定义MCP服务名称和版本
 const MCP_SERVICE_NAME = 'mcp-gaode-agent';
 const MCP_SERVICE_VERSION = '1.0.0';
@@ -39,7 +42,7 @@ function generateTaxiLink(params) {
   const endName = params.endName || '广州塔（小蛮腰）';
   
   // 高德地图打车schema
-  const taxiLink = `amapuri://openFeature?featureName=taxi&sourceApplication=长辈出行助手&startLat=${startLat}&startLon=${startLng}&startName=${encodeURIComponent(startName)}&destLat=${endLat}&destLon=${endLng}&destName=${encodeURIComponent(endName)}`;
+  const taxiLink = `amapuri://openFeature?featureName=taxi&sourceApplication=出行助手&startLat=${startLat}&startLon=${startLng}&startName=${encodeURIComponent(startName)}&destLat=${endLat}&destLon=${endLng}&destName=${encodeURIComponent(endName)}`;
   
   return {
     success: true,
@@ -64,7 +67,7 @@ function generateBusLink(params) {
   const endName = params.endName || '广州塔（小蛮腰）';
   
   // 高德地图公交导航schema
-  const busLink = `amapuri://route/plan?sourceApplication=长辈出行助手&slat=${startLat}&slon=${startLng}&sname=${encodeURIComponent(startName)}&dlat=${endLat}&dlon=${endLng}&dname=${encodeURIComponent(endName)}&dev=0&t=1`;
+  const busLink = `amapuri://route/plan?sourceApplication=出行助手&slat=${startLat}&slon=${startLng}&sname=${encodeURIComponent(startName)}&dlat=${endLat}&dlon=${endLng}&dname=${encodeURIComponent(endName)}&dev=0&t=1`;
   
   return {
     success: true,
@@ -209,7 +212,7 @@ app.post('/tools/call', async (req, res) => {
   }
 });
 
-// 根路径响应 - 长辈出行助手界面
+// 根路径响应 - 出行助手界面
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
