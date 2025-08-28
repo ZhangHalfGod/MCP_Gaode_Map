@@ -1,0 +1,20 @@
+[build]
+  publish = "src"
+  command = ""
+
+[headers]
+  # 为所有文件添加缓存控制
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+  # 为HTML文件设置不缓存
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[redirects]
+  # 处理单页应用的路由问题
+  from = "/*" 
+  to = "/index.html" 
+  status = 200
