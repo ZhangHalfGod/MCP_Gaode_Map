@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>长辈出行助手</title>
+    <title>出行助手</title>
     <!-- 引入TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Material Icons -->
@@ -42,6 +42,16 @@
             }
             .slide-up {
                 animation: slideUp 0.5s ease-out;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .cardNumber {
+                display: none; /* 隐藏卡片数字标识 */
             }
             @keyframes fadeIn {
                 from { opacity: 0; }
@@ -245,7 +255,7 @@
     </div>
 
     <!-- 第二页面内容 - 直接嵌入在滚动容器中 -->
-    <div id="secondPage" class="relative z-0 bg-[#121212] min-h-screen">
+    <div id="secondPage" class="relative z-0 min-h-screen bg-cover bg-center" style="background-image: url('zhu.jpg');">
         <!-- 顶部导航栏 -->
         <div class="h-[2px] w-full bg-[#2D2D2D]"></div>
         
@@ -255,60 +265,82 @@
             <div class="flex-grow flex flex-col items-center justify-center p-8">
             <!-- 长辈出行助手Logo和标语 -->
             <div class="text-center max-w-4xl mb-16">
-                <h2 class="text-[36px] md:text-[48px] font-bold mb-6 text-white">长辈出行助手</h2>
+                <h2 class="text-[36px] md:text-[48px] font-bold mb-6 text-white">出行助手</h2>
                 <p class="text-[20px] text-[#AAAAAA]">为您的每一次出行保驾护航</p>
             </div>
             
-            <!-- 功能特点卡片 -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-                <div class="bg-[#1E1E1E] p-6 rounded-xl hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
-                    <span class="material-icons text-[48px] mb-4 block text-white/80">map</span>
-                    <h3 class="text-[24px] font-bold mb-2 text-white">智能导航</h3>
-                    <p class="text-[#AAAAAA]">多种出行方式选择，智能规划最优路线</p>
+            <!-- 功能特点卡片 - 水平滑动样式 -->
+            <div class="relative w-full max-w-6xl mx-auto my-12 overflow-hidden">
+                <!-- 标题 -->
+                <div class="text-center mb-8">
+                    <h2 class="text-[32px] font-bold text-white">我们的核心功能</h2>
+                    <p class="text-[18px] text-[#AAAAAA] mt-2">为您提供全方位的出行支持</p>
                 </div>
-                <div class="bg-[#1E1E1E] p-6 rounded-xl hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
-                    <span class="material-icons text-[48px] mb-4 block text-white/80">traffic</span>
-                    <h3 class="text-[24px] font-bold mb-2 text-white">实时交通</h3>
-                    <p class="text-[#AAAAAA]">实时路况信息，避开拥堵路段</p>
+                
+                <!-- 水平滑动容器 -->
+                <div id="horizontalScrollContainer" class="relative w-full overflow-x-auto scrollbar-hide">
+                    <div id="cardListBox" class="flex transition-transform duration-500 ease-out whitespace-nowrap" style="transform: translate3d(0px, 0px, 0px);">
+                        <!-- 智能导航卡片 -->
+                        <div id="navigationCard" class="flex-shrink-0 w-[360px] md:w-[400px] bg-[#1E1E1E] p-8 rounded-2xl mx-4 hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
+                            <div class="cardNumber">[01]</div>
+                            <span class="material-icons text-[64px] mb-6 block text-white/80">map</span>
+                            <h3 class="text-[24px] font-bold mb-3 text-white">智能导航</h3>
+                            <p class="text-[#AAAAAA] text-[15px]">多种出行方式选择，智能规划最优路线，提供最简单明了的出行指引</p>
+                        </div>
+                        
+                        <!-- 实时交通卡片 -->
+                        <div id="trafficCard" class="flex-shrink-0 w-[360px] md:w-[400px] bg-[#1E1E1E] p-8 rounded-2xl mx-4 hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
+                            <div class="cardNumber">[02]</div>
+                            <span class="material-icons text-[64px] mb-6 block text-white/80">traffic</span>
+                            <h3 class="text-[24px] font-bold mb-3 text-white">实时交通</h3>
+                            <p class="text-[#AAAAAA] text-[15px]">实时路况信息，避开拥堵路段，让出行更加顺畅无忧</p>
+                        </div>
+                        
+                        <!-- 出行信息卡片 -->
+                        <div id="infoCard" class="flex-shrink-0 w-[360px] md:w-[400px] bg-[#1E1E1E] p-8 rounded-2xl mx-4 hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
+                            <div class="cardNumber">[03]</div>
+                            <span class="material-icons text-[64px] mb-6 block text-white/80">info</span>
+                            <h3 class="text-[24px] font-bold mb-3 text-white">出行信息</h3>
+                            <p class="text-[#AAAAAA] text-[15px]">目的地开放时间、停车场等实用信息，让出行更加便捷安心</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-[#1E1E1E] p-6 rounded-xl hover:bg-[#2D2D2D] transition-all border border-[#2D2D2D]">
-                    <span class="material-icons text-[48px] mb-4 block text-white/80">info</span>
-                    <h3 class="text-[24px] font-bold mb-2 text-white">出行信息</h3>
-                    <p class="text-[#AAAAAA]">目的地开放时间、停车场等实用信息</p>
+                
+                <!-- 滑动指示器 -->
+                <div class="flex justify-center mt-8 space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-white opacity-100" id="indicator-0"></div>
+                    <div class="w-3 h-3 rounded-full bg-white opacity-50" id="indicator-1"></div>
+                    <div class="w-3 h-3 rounded-full bg-white opacity-50" id="indicator-2"></div>
                 </div>
             </div>
             
-            <!-- 额外内容 - 提供更多服务信息 -->
-            <div class="max-w-3xl mx-auto mt-16 text-center">
-                <h3 class="text-[24px] font-bold mb-6 text-white">我们的服务</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                    <div class="flex items-start space-x-4 p-4 hover:bg-[#1E1E1E] rounded-lg transition-all">
-                        <span class="material-icons text-white/80 mt-1">calendar_today</span>
-                        <div>
-                            <h4 class="text-[18px] font-semibold text-white mb-1">行程规划</h4>
-                            <p class="text-[#AAAAAA]">根据您的需求定制最佳出行方案</p>
-                        </div>
+            <!-- 服务特点 -->
+            <div class="max-w-6xl mx-auto mt-16">
+                <h3 class="text-[28px] font-bold mb-10 text-white text-center">为什么选择我们</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex flex-col items-center p-6 bg-[#1E1E1E] rounded-xl border border-[#2D2D2D] hover:shadow-lg hover:shadow-primary/20 transition-all">
+                        <span class="material-icons text-[48px] mb-4 text-white/80">calendar_today</span>
+                        <h4 class="text-[20px] font-bold mb-3 text-white">智能行程规划</h4>
+                        <p class="text-center text-[#AAAAAA]">根据您的习惯和需求，智能定制最佳出行方案，避开复杂路线和高峰期</p>
                     </div>
-                    <div class="flex items-start space-x-4 p-4 hover:bg-[#1E1E1E] rounded-lg transition-all">
-                        <span class="material-icons text-white/80 mt-1">access_time</span>
-                        <div>
-                            <h4 class="text-[18px] font-semibold text-white mb-1">实时提醒</h4>
-                            <p class="text-[#AAAAAA]">及时获取交通变化和时间提醒</p>
-                        </div>
+                    
+                    <div class="flex flex-col items-center p-6 bg-[#1E1E1E] rounded-xl border border-[#2D2D2D] hover:shadow-lg hover:shadow-primary/20 transition-all">
+                        <span class="material-icons text-[48px] mb-4 text-white/80">access_time</span>
+                        <h4 class="text-[20px] font-bold mb-3 text-white">贴心实时提醒</h4>
+                        <p class="text-center text-[#AAAAAA]">及时获取交通变化和时间提醒，确保您按时到达目的地，安全无忧</p>
                     </div>
-                    <div class="flex items-start space-x-4 p-4 hover:bg-[#1E1E1E] rounded-lg transition-all">
-                        <span class="material-icons text-white/80 mt-1">local_activity</span>
-                        <div>
-                            <h4 class="text-[18px] font-semibold text-white mb-1">景点推荐</h4>
-                            <p class="text-[#AAAAAA]">发现周边值得游览的好去处</p>
-                        </div>
+                    
+                    <div class="flex flex-col items-center p-6 bg-[#1E1E1E] rounded-xl border border-[#2D2D2D] hover:shadow-lg hover:shadow-primary/20 transition-all">
+                        <span class="material-icons text-[48px] mb-4 text-white/80">local_activity</span>
+                        <h4 class="text-[20px] font-bold mb-3 text-white">精选景点推荐</h4>
+                        <p class="text-center text-[#AAAAAA]">为您精心挑选适合游览的景点，提供无障碍设施信息，让出行更加丰富</p>
                     </div>
-                    <div class="flex items-start space-x-4 p-4 hover:bg-[#1E1E1E] rounded-lg transition-all">
-                        <span class="material-icons text-white/80 mt-1">help_outline</span>
-                        <div>
-                            <h4 class="text-[18px] font-semibold text-white mb-1">24小时客服</h4>
-                            <p class="text-[#AAAAAA]">随时为您解答出行中的问题</p>
-                        </div>
+                    
+                    <div class="flex flex-col items-center p-6 bg-[#1E1E1E] rounded-xl border border-[#2D2D2D] hover:shadow-lg hover:shadow-primary/20 transition-all">
+                        <span class="material-icons text-[48px] mb-4 text-white/80">help_outline</span>
+                        <h4 class="text-[20px] font-bold mb-3 text-white">全天候客服支持</h4>
+                        <p class="text-center text-[#AAAAAA]">专业客服团队24小时在线，随时为您解答出行中的问题，提供及时帮助</p>
                     </div>
                 </div>
             </div>
@@ -661,9 +693,125 @@
                 }
             });
             
-            // 禁用任何自动滚动行为，确保页面位置保持稳定
-            // 移除任何可能导致页面自动滚动的代码
-            // 这样用户停止滚动后，页面位置就会保持稳定
+            // 初始化水平滑动卡片功能
+            function initHorizontalScrollCards() {
+                const horizontalScrollContainer = document.getElementById('horizontalScrollContainer');
+                const cardListBox = document.getElementById('cardListBox');
+                const indicators = [
+                    document.getElementById('indicator-0'),
+                    document.getElementById('indicator-1'),
+                    document.getElementById('indicator-2')
+                ];
+                
+                if (!horizontalScrollContainer || !cardListBox || !indicators[0]) {
+                    return;
+                }
+                
+                let currentIndex = 0;
+                const cardWidth = 400; // 卡片宽度（包括边距）
+                const cardsCount = 3;
+                let startX = 0;
+                let moveX = 0;
+                let currentX = 0;
+                let isDragging = false;
+                
+                // 更新指示器状态
+                function updateIndicators(index) {
+                    indicators.forEach((indicator, i) => {
+                        indicator.style.opacity = i === index ? '1' : '0.5';
+                    });
+                }
+                
+                // 滚动到指定卡片
+                function scrollToCard(index) {
+                    currentIndex = Math.max(0, Math.min(index, cardsCount - 1));
+                    const offset = -currentIndex * (cardWidth + 16); // 16px 是左右边距之和
+                    cardListBox.style.transform = `translate3d(${offset}px, 0px, 0px)`;
+                    updateIndicators(currentIndex);
+                }
+                
+                // 点击指示器切换卡片
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        scrollToCard(index);
+                    });
+                });
+                
+                // 鼠标拖动事件
+                horizontalScrollContainer.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.clientX - currentX;
+                    horizontalScrollContainer.style.cursor = 'grabbing';
+                });
+                
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    moveX = e.clientX - startX;
+                    
+                    // 限制拖动范围
+                    const maxMove = 0;
+                    const minMove = -(cardsCount - 1) * (cardWidth + 16);
+                    moveX = Math.max(minMove, Math.min(maxMove, moveX));
+                    
+                    cardListBox.style.transform = `translate3d(${moveX}px, 0px, 0px)`;
+                    currentX = moveX;
+                });
+                
+                window.addEventListener('mouseup', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    horizontalScrollContainer.style.cursor = 'grab';
+                    
+                    // 根据拖动距离自动吸附到最近的卡片
+                    const cardIndex = Math.round(-currentX / (cardWidth + 16));
+                    scrollToCard(cardIndex);
+                });
+                
+                // 触摸事件支持
+                horizontalScrollContainer.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    startX = e.touches[0].clientX - currentX;
+                });
+                
+                horizontalScrollContainer.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    moveX = e.touches[0].clientX - startX;
+                    
+                    // 限制拖动范围
+                    const maxMove = 0;
+                    const minMove = -(cardsCount - 1) * (cardWidth + 16);
+                    moveX = Math.max(minMove, Math.min(maxMove, moveX));
+                    
+                    cardListBox.style.transform = `translate3d(${moveX}px, 0px, 0px)`;
+                    currentX = moveX;
+                });
+                
+                horizontalScrollContainer.addEventListener('touchend', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    
+                    // 根据拖动距离自动吸附到最近的卡片
+                    const cardIndex = Math.round(-currentX / (cardWidth + 16));
+                    scrollToCard(cardIndex);
+                });
+                
+                // 设置初始样式
+                horizontalScrollContainer.style.cursor = 'grab';
+                
+                // 响应窗口大小变化
+                window.addEventListener('resize', () => {
+                    // 重新计算卡片宽度
+                    const newCardWidth = window.innerWidth < 768 ? 360 : 400;
+                    if (newCardWidth !== cardWidth) {
+                        scrollToCard(currentIndex);
+                    }
+                });
+            }
+            
+            // 初始化水平滑动卡片
+            initHorizontalScrollCards();
         });
     </script>
 </body>
